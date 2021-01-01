@@ -20,6 +20,7 @@ phases:
       # - npm start
   post_build:
     commands:
+      - NODE_ENV=production
       - echo Build completed on `date`
 # Include only the files required for your application to run.
 # Do not use recursively include artifacts from node_modules directory as it will include unnecessary packages 
