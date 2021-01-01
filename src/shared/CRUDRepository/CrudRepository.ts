@@ -1,16 +1,16 @@
-import mongoose from "mongoose";
+import mongoose = require("mongoose");
+import {Model} from 'mongoose';
 
-export abstract class CrudRepositoy<T extends mongoose.Document> {
+class CrudRepository<T> {
 
-    private _model: mongoose.Model<mongoose.Document>;
+    private _model: mongoose.Model<any>;
 
-    constructor(schemaModel: mongoose.Model<mongoose.Document>) {
+    constructor(schemaModel: mongoose.Model<any>) {
         this._model = schemaModel;
     }
 
-    create(item: T, callback: (error: any, result: mongoose.Document[]) => void) {
-        this._model.create(item, callback);
-
+    create(item: any) : Promise<T> {
+        return this._model.create(item);
     }
 
     retrieve(callback: (error: any, result: mongoose.Document[]) => void) {
@@ -18,7 +18,7 @@ export abstract class CrudRepositoy<T extends mongoose.Document> {
     }
 
     update(_id: mongoose.Types.ObjectId, item: T, callback: (error: any, result: any) => void) {
-        this._model.update({ _id: _id }, item, callback);
+        this._model.update({ _id }, item);
     }
 
     delete(_id: string, callback: (error: any, result: any) => void) {
@@ -35,3 +35,5 @@ export abstract class CrudRepositoy<T extends mongoose.Document> {
     }
 
 }
+
+export = CrudRepository;

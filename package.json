@@ -5,13 +5,14 @@
   "main": "dist/app.js",
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
-    "build": "tsc",
+    "build": "set NODE_ENV=production && tsc",
     "prestart": "npm run build",
-    "start": "node .",
-    "dev": "set NODE_ENV=development && nodemon src/app.ts",
+    "start": "set NODE_ENV=production node .",
+    "dev": "set NODE_ENV=development&& nodemon src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@types/dotenv": "^8.2.0",
     "@types/mongoose": "^5.10.3",
     "@types/nodemon": "^1.19.0",
     "body-parser": "^1.19.0",
