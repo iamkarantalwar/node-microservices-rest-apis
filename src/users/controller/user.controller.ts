@@ -10,7 +10,7 @@ class UserController {
     }
 
     async register(req: Request, res: Response, next: NextFunction) {
-        
+
         const userCreation = this.userReposiotry.create({
             name: req.body.name,
             username: req.body.username,
@@ -27,12 +27,12 @@ class UserController {
 
         }).catch((err) => {
             res.send({
-                err: err,
+                err,
             });
         })
 
 
-        
+
     }
 }
 
